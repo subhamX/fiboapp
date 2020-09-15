@@ -1,0 +1,23 @@
+name: Deploy to IBM Cloud Foundry
+on:
+  push:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:   
+    - uses: actions/checkout@v2
+    - name: Deploy Fibonacci App
+      uses: subhamx/ibm-cloud-foundry-deploy@master
+      with:
+        # For Users who have opted for Authentication using Email & Password
+        EMAIL: ${{ secrets.USER_EMAIL }}
+        PASSWORD: ${{ secrets.USER_PASSWORD }}
+        # For Users who have opted for Authentication using API KEY
+        API_KEY: ${{ secrets.IBM_API_KEY }}
+        # Cloud Foundry API Endpoint
+        CF_API_ENDPOINT: ${{ secrets.CF_API_ENDPOINT }}
+        # Path of manifest.yml
+        MANIFEST_FILE_PATH: ./manifest.yml
+        ORG: ${{ secrets.ORG }}
+        SPACE: ${{ secrets.SPACE }}
