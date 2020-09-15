@@ -1,19 +1,15 @@
 {
-  "name": "portfolio",
+  "name": "fiboapp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/subhamX/portfolio/issues"
-  },
-  "homepage": "https://github.com/subhamX/portfolio#readme",
   "dependencies": {
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"

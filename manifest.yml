@@ -1,4 +1,4 @@
 applications:
-- name: advice
+- name: fiboapp
   memory: 128M
   timeout: 80

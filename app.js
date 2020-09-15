@@ -16,11 +16,41 @@ async function getAdvice(){
 }
 
 
-app.get('/', async (req, res) => {
+function getNthFibonacci(digit){
+    let a=1, b=0;
+    for(var i=2;i<=digit; i++){
+        let x=a+b;
+        b=a;
+        a=x;
+    }
+    return {a, b};
+}
+
+app.get('/', (req, res) => {
+    let queryN=req.query.n;
+    let n;
+    if(queryN===undefined){
+        n=parseInt(Math.random()*1000);
+    }else if(queryN<0 || isNaN(queryN) || parseInt(queryN)>1000){
+        res.json({"error": true, "message": "Invalid query param n" });
+    }else{
+        n=parseInt(queryN);
+    }
+
+    let {a, b} = getNthFibonacci(n);
+    console.log(n===0);
+    if(n===0){
+        res.json({"timestamp": new Date().toLocaleTimeString(), "Desc": "Fibonacci Sequence", "n": n, "nth term": a })
+    }else{
+        res.json({"timestamp": new Date().toLocaleTimeString(), "Desc": "Fibonacci Sequence", "n": n, "nth term": a, "(n-1)th term": b })
+    }
+
+})
+
+app.get('/advice/', async (req, res) => {
     let advice=await getAdvice();
     res.send(`${new Date().toLocaleTimeString()} - ${advice}` );
 })
-
 
 app.get('/*', (req, res) => {
     res.redirect('/')
