@@ -1,5 +1,4 @@
 applications:
-- name: helloworldhelol
+- name: advice
   memory: 128M
-  # route: snowman.eu-gb.cf.appdomain.cloud
   timeout: 80
